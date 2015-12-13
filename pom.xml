@@ -102,9 +102,275 @@
           <target>${java.version}</target>
           <showDeprecation>true</showDeprecation>
           <showWarnings>true</showWarnings>
-          <compilerArguments>
-            <Xlint />
-          </compilerArguments>
+          <compilerArgs>
+            <compilerArg>-Xlint</compilerArg>
+
+            <!-- on by default: error -->
+            <compilerArg>-Xep:AndroidInjectionBeforeSuper:ERROR</compilerArg>
+            <compilerArg>-Xep:ArrayEquals:ERROR</compilerArg>
+            <compilerArg>-Xep:ArrayFillIncompatibleType:ERROR</compilerArg>
+            <compilerArg>-Xep:ArrayHashCode:ERROR</compilerArg>
+            <compilerArg>-Xep:ArrayToString:ERROR</compilerArg>
+            <compilerArg>-Xep:ArraysAsListPrimitiveArray:ERROR</compilerArg>
+            <compilerArg>-Xep:AsyncCallableReturnsNull:ERROR</compilerArg>
+            <compilerArg>-Xep:AsyncFunctionReturnsNull:ERROR</compilerArg>
+            <compilerArg>-Xep:AutoValueConstructorOrderChecker:ERROR</compilerArg>
+            <compilerArg>-Xep:BadShiftAmount:ERROR</compilerArg>
+            <compilerArg>-Xep:BundleDeserializationCast:ERROR</compilerArg>
+            <compilerArg>-Xep:ChainingConstructorIgnoresParameter:ERROR</compilerArg>
+            <compilerArg>-Xep:CheckReturnValue:ERROR</compilerArg>
+            <compilerArg>-Xep:CollectionIncompatibleType:ERROR</compilerArg>
+            <compilerArg>-Xep:ComparisonOutOfRange:ERROR</compilerArg>
+            <compilerArg>-Xep:CompatibleWithAnnotationMisuse:ERROR</compilerArg>
+            <compilerArg>-Xep:CompileTimeConstant:ERROR</compilerArg>
+            <compilerArg>-Xep:ComplexBooleanConstant:ERROR</compilerArg>
+            <compilerArg>-Xep:ConstantOverflow:ERROR</compilerArg>
+            <compilerArg>-Xep:DaggerProvidesNull:ERROR</compilerArg>
+            <compilerArg>-Xep:DeadException:ERROR</compilerArg>
+            <compilerArg>-Xep:DeadThread:ERROR</compilerArg>
+            <compilerArg>-Xep:DoNotCall:ERROR</compilerArg>
+            <compilerArg>-Xep:EqualsNaN:ERROR</compilerArg>
+            <compilerArg>-Xep:EqualsReference:ERROR</compilerArg>
+            <compilerArg>-Xep:ForOverride:ERROR</compilerArg>
+            <compilerArg>-Xep:FormatString:ERROR</compilerArg>
+            <compilerArg>-Xep:FormatStringAnnotation:ERROR</compilerArg>
+            <compilerArg>-Xep:FunctionalInterfaceMethodChanged:ERROR</compilerArg>
+            <compilerArg>-Xep:FuturesGetCheckedIllegalExceptionType:ERROR</compilerArg>
+            <compilerArg>-Xep:GetClassOnAnnotation:ERROR</compilerArg>
+            <compilerArg>-Xep:GetClassOnClass:ERROR</compilerArg>
+            <compilerArg>-Xep:GuardedBy:ERROR</compilerArg>
+            <compilerArg>-Xep:GuiceAssistedInjectScoping:ERROR</compilerArg>
+            <compilerArg>-Xep:GuiceAssistedParameters:ERROR</compilerArg>
+            <compilerArg>-Xep:GuiceInjectOnFinalField:ERROR</compilerArg>
+            <compilerArg>-Xep:HashtableContains:ERROR</compilerArg>
+            <compilerArg>-Xep:IdentityBinaryExpression:ERROR</compilerArg>
+            <compilerArg>-Xep:Immutable:ERROR</compilerArg>
+            <compilerArg>-Xep:ImmutableModification:ERROR</compilerArg>
+            <compilerArg>-Xep:IncompatibleArgumentType:ERROR</compilerArg>
+            <compilerArg>-Xep:IndexOfChar:ERROR</compilerArg>
+            <compilerArg>-Xep:InexactVarargsConditional:ERROR</compilerArg>
+            <compilerArg>-Xep:InfiniteRecursion:ERROR</compilerArg>
+            <compilerArg>-Xep:InjectMoreThanOneScopeAnnotationOnClass:ERROR</compilerArg>
+            <compilerArg>-Xep:InvalidPatternSyntax:ERROR</compilerArg>
+            <compilerArg>-Xep:InvalidTimeZoneID:ERROR</compilerArg>
+            <compilerArg>-Xep:IsInstanceOfClass:ERROR</compilerArg>
+            <compilerArg>-Xep:IsLoggableTagLength:ERROR</compilerArg>
+            <compilerArg>-Xep:JUnit3TestNotRun:ERROR</compilerArg>
+            <compilerArg>-Xep:JUnit4ClassAnnotationNonStatic:ERROR</compilerArg>
+            <compilerArg>-Xep:JUnit4SetUpNotRun:ERROR</compilerArg>
+            <compilerArg>-Xep:JUnit4TearDownNotRun:ERROR</compilerArg>
+            <compilerArg>-Xep:JUnit4TestNotRun:ERROR</compilerArg>
+            <compilerArg>-Xep:JUnitAssertSameCheck:ERROR</compilerArg>
+            <compilerArg>-Xep:JavaxInjectOnAbstractMethod:ERROR</compilerArg>
+            <compilerArg>-Xep:LiteByteStringUtf8:ERROR</compilerArg>
+            <compilerArg>-Xep:LoopConditionChecker:ERROR</compilerArg>
+            <compilerArg>-Xep:MislabeledAndroidString:ERROR</compilerArg>
+            <compilerArg>-Xep:MissingSuperCall:ERROR</compilerArg>
+            <compilerArg>-Xep:MisusedWeekYear:ERROR</compilerArg>
+            <compilerArg>-Xep:MockitoCast:ERROR</compilerArg>
+            <compilerArg>-Xep:MockitoUsage:ERROR</compilerArg>
+            <compilerArg>-Xep:ModifyingCollectionWithItself:ERROR</compilerArg>
+            <compilerArg>-Xep:MoreThanOneInjectableConstructor:ERROR</compilerArg>
+            <compilerArg>-Xep:MustBeClosedChecker:ERROR</compilerArg>
+            <compilerArg>-Xep:NCopiesOfChar:ERROR</compilerArg>
+            <compilerArg>-Xep:NonCanonicalStaticImport:ERROR</compilerArg>
+            <compilerArg>-Xep:NonFinalCompileTimeConstant:ERROR</compilerArg>
+            <compilerArg>-Xep:NonRuntimeAnnotation:ERROR</compilerArg>
+            <compilerArg>-Xep:NullTernary:ERROR</compilerArg>
+            <compilerArg>-Xep:OptionalEquality:ERROR</compilerArg>
+            <compilerArg>-Xep:OverlappingQualifierAndScopeAnnotation:ERROR</compilerArg>
+            <compilerArg>-Xep:OverridesJavaxInjectableMethod:ERROR</compilerArg>
+            <compilerArg>-Xep:PackageInfo:ERROR</compilerArg>
+            <compilerArg>-Xep:PreconditionsCheckNotNull:ERROR</compilerArg>
+            <compilerArg>-Xep:PreconditionsCheckNotNullPrimitive:ERROR</compilerArg>
+            <compilerArg>-Xep:PredicateIncompatibleType:ERROR</compilerArg>
+            <compilerArg>-Xep:PrivateSecurityContractProtoAccess:ERROR</compilerArg>
+            <compilerArg>-Xep:ProtoFieldNullComparison:ERROR</compilerArg>
+            <compilerArg>-Xep:ProtocolBufferOrdinal:ERROR</compilerArg>
+            <compilerArg>-Xep:ProvidesMethodOutsideOfModule:ERROR</compilerArg>
+            <compilerArg>-Xep:RandomModInteger:ERROR</compilerArg>
+            <compilerArg>-Xep:RectIntersectReturnValueIgnored:ERROR</compilerArg>
+            <compilerArg>-Xep:RestrictedApiChecker:ERROR</compilerArg>
+            <compilerArg>-Xep:ReturnValueIgnored:ERROR</compilerArg>
+            <compilerArg>-Xep:SelfAssignment:ERROR</compilerArg>
+            <compilerArg>-Xep:SelfComparison:ERROR</compilerArg>
+            <compilerArg>-Xep:SelfEquals:ERROR</compilerArg>
+            <compilerArg>-Xep:ShouldHaveEvenArgs:ERROR</compilerArg>
+            <compilerArg>-Xep:SizeGreaterThanOrEqualsZero:ERROR</compilerArg>
+            <compilerArg>-Xep:StreamToString:ERROR</compilerArg>
+            <compilerArg>-Xep:StringBuilderInitWithChar:ERROR</compilerArg>
+            <compilerArg>-Xep:SuppressWarningsDeprecated:ERROR</compilerArg>
+            <compilerArg>-Xep:ThrowIfUncheckedKnownChecked:ERROR</compilerArg>
+            <compilerArg>-Xep:ThrowNull:ERROR</compilerArg>
+            <compilerArg>-Xep:TruthSelfEquals:ERROR</compilerArg>
+            <compilerArg>-Xep:TryFailThrowable:ERROR</compilerArg>
+            <compilerArg>-Xep:TypeParameterQualifier:ERROR</compilerArg>
+            <compilerArg>-Xep:UnnecessaryTypeArgument:ERROR</compilerArg>
+            <compilerArg>-Xep:UnusedAnonymousClass:ERROR</compilerArg>
+            <compilerArg>-Xep:UnusedCollectionModifiedInPlace:ERROR</compilerArg>
+
+            <!-- on by default: warning -->
+            <compilerArg>-Xep:AmbiguousMethodReference:ERROR</compilerArg>
+            <compilerArg>-Xep:ArgumentSelectionDefectChecker:ERROR</compilerArg>
+            <compilerArg>-Xep:AssertEqualsArgumentOrderChecker:ERROR</compilerArg>
+            <compilerArg>-Xep:AssertionFailureIgnored:ERROR</compilerArg>
+            <compilerArg>-Xep:BadAnnotationImplementation:ERROR</compilerArg>
+            <compilerArg>-Xep:BadComparable:ERROR</compilerArg>
+            <compilerArg>-Xep:BoxedPrimitiveConstructor:ERROR</compilerArg>
+            <compilerArg>-Xep:CannotMockFinalClass:ERROR</compilerArg>
+            <compilerArg>-Xep:CanonicalDuration:ERROR</compilerArg>
+            <compilerArg>-Xep:ClassCanBeStatic:ERROR</compilerArg>
+            <compilerArg>-Xep:ClassNewInstance:ERROR</compilerArg>
+            <compilerArg>-Xep:CollectionToArraySafeParameter:ERROR</compilerArg>
+            <compilerArg>-Xep:CollectorShouldNotUseState:ERROR</compilerArg>
+            <compilerArg>-Xep:ComparableAndComparator:ERROR</compilerArg>
+            <compilerArg>-Xep:DefaultCharset:OFF</compilerArg>  <!-- TODO: -->
+            <compilerArg>-Xep:DoubleCheckedLocking:ERROR</compilerArg>
+            <compilerArg>-Xep:EqualsHashCode:ERROR</compilerArg>
+            <compilerArg>-Xep:EqualsIncompatibleType:ERROR</compilerArg>
+            <compilerArg>-Xep:FallThrough:OFF</compilerArg>  <!-- noisy -->
+            <compilerArg>-Xep:Finally:ERROR</compilerArg>
+            <compilerArg>-Xep:FloatCast:ERROR</compilerArg>
+            <compilerArg>-Xep:FloatingPointLiteralPrecision:ERROR</compilerArg>
+            <compilerArg>-Xep:FragmentInjection:ERROR</compilerArg>
+            <compilerArg>-Xep:FragmentNotInstantiable:ERROR</compilerArg>
+            <compilerArg>-Xep:FutureReturnValueIgnored:ERROR</compilerArg>
+            <compilerArg>-Xep:GetClassOnEnum:ERROR</compilerArg>
+            <compilerArg>-Xep:HidingField:OFF</compilerArg>  <!-- noisy -->
+            <compilerArg>-Xep:ImmutableAnnotationChecker:ERROR</compilerArg>
+            <compilerArg>-Xep:ImmutableEnumChecker:ERROR</compilerArg>
+            <compilerArg>-Xep:IncompatibleModifiers:ERROR</compilerArg>
+            <compilerArg>-Xep:IncrementInForLoopAndHeader:ERROR</compilerArg>
+            <compilerArg>-Xep:InjectOnConstructorOfAbstractClass:ERROR</compilerArg>
+            <compilerArg>-Xep:InputStreamSlowMultibyteRead:ERROR</compilerArg>
+            <compilerArg>-Xep:InstanceOfAndCastMatchWrongType:ERROR</compilerArg>
+            <compilerArg>-Xep:IntLongMath:ERROR</compilerArg>
+            <compilerArg>-Xep:IterableAndIterator:ERROR</compilerArg>
+            <compilerArg>-Xep:JUnit3FloatingPointComparisonWithoutDelta:ERROR</compilerArg>
+            <compilerArg>-Xep:JUnit4ClassUsedInJUnit3:ERROR</compilerArg>
+            <compilerArg>-Xep:JUnitAmbiguousTestClass:ERROR</compilerArg>
+            <compilerArg>-Xep:JavaLangClash:ERROR</compilerArg>
+            <compilerArg>-Xep:JdkObsolete:ERROR</compilerArg>
+            <compilerArg>-Xep:LogicalAssignment:ERROR</compilerArg>
+            <compilerArg>-Xep:MissingCasesInEnumSwitch:OFF</compilerArg>  <!-- noisy -->
+            <compilerArg>-Xep:MissingFail:ERROR</compilerArg>
+            <compilerArg>-Xep:MissingOverride:ERROR</compilerArg>
+            <compilerArg>-Xep:MultipleParallelOrSequentialCalls:ERROR</compilerArg>
+            <compilerArg>-Xep:MutableConstantField:OFF</compilerArg>  <!-- TODO: -->
+            <compilerArg>-Xep:NamedParameters:ERROR</compilerArg>
+            <compilerArg>-Xep:NarrowingCompoundAssignment:ERROR</compilerArg>
+            <compilerArg>-Xep:NestedInstanceOfConditions:ERROR</compilerArg>
+            <compilerArg>-Xep:NonAtomicVolatileUpdate:ERROR</compilerArg>
+            <compilerArg>-Xep:NonOverridingEquals:ERROR</compilerArg>
+            <compilerArg>-Xep:NullableConstructor:ERROR</compilerArg>
+            <compilerArg>-Xep:NullablePrimitive:ERROR</compilerArg>
+            <compilerArg>-Xep:NullableVoid:ERROR</compilerArg>
+            <compilerArg>-Xep:OperatorPrecedence:ERROR</compilerArg>
+            <compilerArg>-Xep:OptionalNotPresent:ERROR</compilerArg>
+            <compilerArg>-Xep:OverrideThrowableToString:ERROR</compilerArg>
+            <compilerArg>-Xep:Overrides:ERROR</compilerArg>
+            <compilerArg>-Xep:OverridesGuiceInjectableMethod:ERROR</compilerArg>
+            <compilerArg>-Xep:ParameterName:ERROR</compilerArg>
+            <compilerArg>-Xep:PreconditionsInvalidPlaceholder:ERROR</compilerArg>
+            <compilerArg>-Xep:ProtoFieldPreconditionsCheckNotNull:ERROR</compilerArg>
+            <compilerArg>-Xep:ReachabilityFenceUsage:ERROR</compilerArg>
+            <compilerArg>-Xep:ReferenceEquality:ERROR</compilerArg>
+            <compilerArg>-Xep:RequiredModifiers:ERROR</compilerArg>
+            <compilerArg>-Xep:ShortCircuitBoolean:ERROR</compilerArg>
+            <compilerArg>-Xep:StaticGuardedByInstance:ERROR</compilerArg>
+            <compilerArg>-Xep:SynchronizeOnNonFinalField:ERROR</compilerArg>
+            <compilerArg>-Xep:ThreadJoinLoop:ERROR</compilerArg>
+            <compilerArg>-Xep:ThreeLetterTimeZoneID:ERROR</compilerArg>
+            <compilerArg>-Xep:TruthConstantAsserts:ERROR</compilerArg>
+            <compilerArg>-Xep:TypeParameterShadowing:ERROR</compilerArg>
+            <compilerArg>-Xep:TypeParameterUnusedInFormals:ERROR</compilerArg>
+            <compilerArg>-Xep:URLEqualsHashCode:ERROR</compilerArg>
+            <compilerArg>-Xep:UnsafeFinalization:ERROR</compilerArg>
+            <compilerArg>-Xep:UnsynchronizedOverridesSynchronized:ERROR</compilerArg>
+            <compilerArg>-Xep:UseCorrectAssertInTests:ERROR</compilerArg>
+            <compilerArg>-Xep:WaitNotInLoop:ERROR</compilerArg>
+            <compilerArg>-Xep:WakelockReleasedDangerously:ERROR</compilerArg>
+
+            <!-- experimental: error -->
+            <compilerArg>-Xep:AssistedInjectAndInjectOnSameConstructor:ERROR</compilerArg>
+            <compilerArg>-Xep:AutoFactoryAtInject:ERROR</compilerArg>
+            <compilerArg>-Xep:ClassName:ERROR</compilerArg>
+            <compilerArg>-Xep:ComparisonContractViolated:ERROR</compilerArg>
+            <compilerArg>-Xep:DepAnn:ERROR</compilerArg>
+            <compilerArg>-Xep:DivZero:ERROR</compilerArg>
+            <compilerArg>-Xep:EmptyIf:ERROR</compilerArg>
+            <compilerArg>-Xep:FuzzyEqualsShouldNotBeUsedInEqualsMethod:ERROR</compilerArg>
+            <compilerArg>-Xep:InjectInvalidTargetingOnScopingAnnotation:ERROR</compilerArg>
+            <compilerArg>-Xep:InjectMoreThanOneQualifier:ERROR</compilerArg>
+            <compilerArg>-Xep:InjectScopeAnnotationOnInterfaceOrAbstractClass:ERROR</compilerArg>
+            <compilerArg>-Xep:InjectScopeOrQualifierAnnotationRetention:ERROR</compilerArg>
+            <compilerArg>-Xep:InjectedConstructorAnnotations:ERROR</compilerArg>
+            <compilerArg>-Xep:InsecureCryptoUsage:ERROR</compilerArg>
+            <compilerArg>-Xep:IterablePathParameter:ERROR</compilerArg>
+            <compilerArg>-Xep:JMockTestWithoutRunWithOrRuleAnnotation:ERROR</compilerArg>
+            <compilerArg>-Xep:JavaxInjectOnFinalField:ERROR</compilerArg>
+            <compilerArg>-Xep:LockMethodChecker:ERROR</compilerArg>
+            <compilerArg>-Xep:LongLiteralLowerCaseSuffix:ERROR</compilerArg>
+            <compilerArg>-Xep:NoAllocation:ERROR</compilerArg>
+            <compilerArg>-Xep:NumericEquality:ERROR</compilerArg>
+            <compilerArg>-Xep:ParameterPackage:ERROR</compilerArg>
+            <compilerArg>-Xep:ProtoStringFieldReferenceEquality:ERROR</compilerArg>
+            <compilerArg>-Xep:QualifierOrScopeOnInjectMethod:ERROR</compilerArg>
+            <compilerArg>-Xep:RestrictTo:ERROR</compilerArg>
+            <compilerArg>-Xep:StaticOrDefaultInterfaceMethod:ERROR</compilerArg>
+            <compilerArg>-Xep:UnlockMethod:ERROR</compilerArg>
+
+            <!-- experimental: warning -->
+            <compilerArg>-Xep:AssertFalse:ERROR</compilerArg>
+            <compilerArg>-Xep:AssistedInjectAndInjectOnConstructors:ERROR</compilerArg>
+            <compilerArg>-Xep:BigDecimalLiteralDouble:ERROR</compilerArg>
+            <compilerArg>-Xep:BinderIdentityRestoredDangerously:ERROR</compilerArg>
+            <compilerArg>-Xep:BindingToUnqualifiedCommonType:ERROR</compilerArg>
+            <compilerArg>-Xep:ConstructorInvokesOverridable:ERROR</compilerArg>
+            <compilerArg>-Xep:ConstructorLeaksThis:OFF</compilerArg>  <!-- false positives -->
+            <compilerArg>-Xep:EmptyTopLevelDeclaration:ERROR</compilerArg>
+            <compilerArg>-Xep:ExpectedExceptionChecker:ERROR</compilerArg>
+            <compilerArg>-Xep:FunctionalInterfaceClash:OFF</compilerArg>  <!-- noisy -->
+            <compilerArg>-Xep:HardCodedSdCardPath:ERROR</compilerArg>
+            <compilerArg>-Xep:InconsistentOverloads:ERROR</compilerArg>
+            <compilerArg>-Xep:MissingDefault:ERROR</compilerArg>
+            <compilerArg>-Xep:MutableMethodReturnType:OFF</compilerArg>  <!-- TODO: -->
+            <compilerArg>-Xep:NonCanonicalStaticMemberImport:ERROR</compilerArg>
+            <compilerArg>-Xep:PrimitiveArrayPassedToVarargsMethod:ERROR</compilerArg>
+            <compilerArg>-Xep:ProvidesFix:ERROR</compilerArg>
+            <compilerArg>-Xep:QualifierWithTypeUse:ERROR</compilerArg>
+            <compilerArg>-Xep:RedundantThrows:ERROR</compilerArg>
+            <compilerArg>-Xep:StaticQualifiedUsingExpression:ERROR</compilerArg>
+            <compilerArg>-Xep:StringEquality:ERROR</compilerArg>
+            <compilerArg>-Xep:TestExceptionChecker:ERROR</compilerArg>
+            <compilerArg>-Xep:UnnecessaryDefaultInEnumSwitch:OFF</compilerArg>  <!-- TODO: -->
+            <compilerArg>-Xep:Var:OFF</compilerArg>  <!-- noisy -->
+
+            <!-- experimental: suggestion -->
+            <compilerArg>-Xep:BooleanParameter:OFF</compilerArg>  <!-- noisy -->
+            <compilerArg>-Xep:ConstantField:ERROR</compilerArg>
+            <compilerArg>-Xep:EmptySetMultibindingContributions:ERROR</compilerArg>
+            <compilerArg>-Xep:FieldMissingNullable:OFF</compilerArg>  <!-- noisy -->
+            <compilerArg>-Xep:MethodCanBeStatic:ERROR</compilerArg>
+            <compilerArg>-Xep:MixedArrayDimensions:ERROR</compilerArg>
+            <compilerArg>-Xep:MultiVariableDeclaration:ERROR</compilerArg>
+            <compilerArg>-Xep:MultipleTopLevelClasses:ERROR</compilerArg>
+            <compilerArg>-Xep:MultipleUnaryOperatorsInMethodCall:ERROR</compilerArg>
+            <compilerArg>-Xep:PackageLocation:ERROR</compilerArg>
+            <compilerArg>-Xep:ParameterComment:ERROR</compilerArg>
+            <compilerArg>-Xep:ParameterNotNullable:ERROR</compilerArg>
+            <compilerArg>-Xep:PrivateConstructorForNoninstantiableModuleTest:ERROR</compilerArg>
+            <compilerArg>-Xep:PrivateConstructorForUtilityClass:ERROR</compilerArg>
+            <compilerArg>-Xep:RemoveUnusedImports:ERROR</compilerArg>
+            <compilerArg>-Xep:ReturnMissingNullable:ERROR</compilerArg>
+            <compilerArg>-Xep:SwitchDefault:ERROR</compilerArg>
+            <compilerArg>-Xep:ThrowsUncheckedException:ERROR</compilerArg>
+            <compilerArg>-Xep:UngroupedOverloads:ERROR</compilerArg>
+            <compilerArg>-Xep:UnnecessarySetDefault:ERROR</compilerArg>
+            <compilerArg>-Xep:UnnecessaryStaticImport:ERROR</compilerArg>
+            <compilerArg>-Xep:UseBinds:ERROR</compilerArg>
+            <compilerArg>-Xep:WildcardImport:ERROR</compilerArg>
+          </compilerArgs>
         </configuration>
         <dependencies>
           <dependency>
@@ -115,7 +381,7 @@
           <dependency>
             <groupId>com.google.errorprone</groupId>
             <artifactId>error_prone_core</artifactId>
-            <version>2.0.5</version>
+            <version>2.1.3</version>
           </dependency>
         </dependencies>
       </plugin>
