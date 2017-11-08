@@ -26,10 +26,15 @@ import java.net.URLConnection;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Nullable;
@@ -85,14 +90,18 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.amazonaws.services.s3.model.SetBucketLoggingConfigurationRequest;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.model.UploadPartResult;
+import com.google.common.base.Stopwatch;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.common.io.ByteSource;
 import com.google.common.io.ByteStreams;
+import com.google.common.io.Resources;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
 import org.assertj.core.api.Fail;
 
+import org.jclouds.Constants;
 import org.jclouds.ContextBuilder;
 import org.jclouds.blobstore.BlobStore;
 import org.jclouds.blobstore.BlobStoreContext;
@@ -1441,6 +1450,100 @@ public final class AwsSdkTest {
             Fail.failBecauseExceptionWasNotThrown(AmazonS3Exception.class);
         } catch (AmazonS3Exception e) {
             assertThat(e.getErrorCode()).isEqualTo("InvalidAccessKeyId");
+        }
+    }
+
+    @Test
+    public void testMultiConfigLimits() throws Exception {
+        ImmutableMap.Builder<String, Map.Entry<String, BlobStore>> locators =
+                ImmutableMap.builder();
+        Properties properties = new Properties();
+        try (InputStream is = Resources.asByteSource(Resources.getResource(
+                "s3proxy.conf")).openStream()) {
+            properties.load(is);
+        }
+        int numThreads = 200;
+        for (int i = 0; i < numThreads; ++i) {
+            String identity = properties.getProperty(
+                    Constants.PROPERTY_IDENTITY);
+            String credential = properties.getProperty(
+                    Constants.PROPERTY_CREDENTIAL);
+            BlobStore blobstore = ContextBuilder
+                    .newBuilder(blobStoreType)
+                    .credentials(identity, credential)
+                    .build(BlobStoreContext.class)
+                    .getBlobStore();
+            locators.put("identity" + i, Maps.immutableEntry(
+                    "credential" + i, blobstore));
+        }
+        final ImmutableMap<String, Map.Entry<String, BlobStore>> locator =
+                locators.build();
+        s3Proxy.setBlobStoreLocator(new BlobStoreLocator() {
+            @Override
+            public Map.Entry<String, BlobStore> locateBlobStore(
+                    String identity, String container, String blob) {
+                return locator.get(identity);
+            }
+        });
+
+        final Stopwatch stopwatch = Stopwatch.createStarted();
+        ExecutorService service = Executors.newFixedThreadPool(numThreads,
+                new ThreadFactoryBuilder()
+                        .setNameFormat("testMultiConfigLimits %d")
+                        .setThreadFactory(Executors.defaultThreadFactory())
+                        .build());
+        try {
+            List<Future<?>> futures = new ArrayList<>();
+            for (int i = 0; i < numThreads; ++i) {
+                final int ii = i;
+                final AmazonS3 client = AmazonS3ClientBuilder.standard()
+                        .withCredentials(new AWSStaticCredentialsProvider(
+                                new BasicAWSCredentials("identity" + i,
+                                        "credential" + i)))
+                        .withEndpointConfiguration(s3EndpointConfig)
+                        .build();
+                futures.add(service.submit(new Runnable() {
+                    @Override
+                    public void run() {
+                        // busy work loop which repeatedly gets the same blob
+                        String bucket = createRandomContainerName();
+                        String key = "key";
+                        ByteSource byteSource = TestUtils.randomByteSource()
+                                .slice(0, 128 * 1024);
+                        client.createBucket(bucket);
+                        try {
+                            ObjectMetadata metadata = new ObjectMetadata();
+                            metadata.setContentLength(BYTE_SOURCE.size());
+                            client.putObject(bucket, key,
+                                    BYTE_SOURCE.openStream(), metadata);
+                            client.putObject(bucket, key + 1,
+                                    BYTE_SOURCE.openStream(), metadata);
+                            while (stopwatch.elapsed(TimeUnit.SECONDS) < 60) {
+                                S3Object object = client.getObject(bucket, key);
+                                try (InputStream is =
+                                        object.getObjectContent()) {
+                                    ByteStreams.copy(is,
+                                            ByteStreams.nullOutputStream());
+                                }
+                                client.listObjects(bucket);
+
+                                System.err.println("looping " + ii);
+                            }
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        } finally {
+                            client.deleteObject(bucket, key + 1);
+                            client.deleteObject(bucket, key);
+                            client.deleteBucket(bucket);
+                        }
+                    }
+                }));
+            }
+            for (Future<?> future : futures) {
+                future.get();
+            }
+        } finally {
+            service.shutdown();
         }
     }
 
